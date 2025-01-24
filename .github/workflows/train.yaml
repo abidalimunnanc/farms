@@ -3,17 +3,13 @@ on: [push]
 
 
 jobs:
-  
-  print-token:
-    permissions: write-all
-    name: print-token
-    environment: dev
-    # needs: pre-pkr
-    runs-on: ubuntu-latest
-
 
   run:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
