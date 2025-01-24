@@ -6,29 +6,18 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+      - uses: iterative/setup-cml@v1
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Set up CML
-        uses: iterative/setup-cml@v1
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-         
-
+      
       - name: Train model and generate report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
         run: |
+          pip install -r requirements.txt
           dvc repro
           git fetch --prune
           dvc metrics diff > report.md 

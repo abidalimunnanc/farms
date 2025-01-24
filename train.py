@@ -29,7 +29,7 @@ X = imp.transform(X)
 
 
 # Linear model
-clf = LogisticRegression()
+clf = QuadraticDiscriminantAnalysis()
 yhat = cross_val_predict(clf, X, y, cv=5)
 
 acc = np.mean(yhat==y)
@@ -48,7 +48,7 @@ df['pred_accuracy'] = score_int
 
 # Bar plot by region
 
-sns.set_color_codes("dark")
+
 ax = sns.barplot(x="region", y="pred_accuracy", data=df, palette = "Greens_d")
 ax.set(xlabel="Region", ylabel = "Model accuracy")
 plt.savefig("by_region.png",dpi=80)
