@@ -14,7 +14,7 @@ jobs:
       
       - name: Train model and generate report
         env:
-          REPO_TOKEN: ${{ secrets.PAT_TOKEN }}
+          REPO_TOKEN: ${{ secrets.mypvt }}
 
         run: |
           pip install -r requirements.txt
